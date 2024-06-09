@@ -10,7 +10,7 @@ import { useForm } from "../../../hooks/useForm"
 import { useFormErrorsHandle } from "../../../hooks/useFormErrorsHandle"
 import { setBreadCrumbItemsAction, setToastAction } from "../../../store/actions/appActions"
 
-// formulaire à soumettre
+// formulaire à modifier 
 const initialForm = {
     ID_CATEGORY: null,
     NAME_ARTICLE: "",
@@ -41,6 +41,7 @@ const EditArticlePage = () => {
         }
     })
 
+    // fonction qu'on appelle pour faire la modification
     const handleSubmit = async (e) => {
         try {
             e.preventDefault()
@@ -81,6 +82,7 @@ const EditArticlePage = () => {
     }, [])
 
 
+    // pour recuperer l'objet de l'article actuel
     useEffect(() => {
         (async () => {
             try {
@@ -100,6 +102,8 @@ const EditArticlePage = () => {
         })();
     }, []);
 
+
+    // pour recuperer la catégorie correspondante à l'article actuelle
     const fetchCatgeories = useCallback(async () => {
         try {
             const res = await fetchApi("/category/all");
@@ -128,7 +132,7 @@ const EditArticlePage = () => {
             {isSubmitting ? <Loading /> : null}
             <div className="px-4 py-3 main_content bg-white has_footer">
                 <div className="">
-                    <h1 className="mb-3">Nouvel article</h1>
+                    <h1 className="mb-3">Modifier article</h1>
                     <hr className="w-100" />
                 </div>
                 <form className="form w-75 mt-5" onSubmit={handleSubmit}>
@@ -164,6 +168,7 @@ const EditArticlePage = () => {
                                 <label htmlFor="DESIGNATION" className="label mb-1">Catégorie</label>
                             </div>
                             <div className="col-sm">
+                                {/* pour faire le select on fait l'appel du composant Dropdown de primereact qu'on peut trouver sur primereact.com/dropdonw */}
                                 <Dropdown
                                     value={data.category}
                                     options={categories}
