@@ -9,12 +9,15 @@ import fetchApi from "../../../helpers/fetchApi"
 import { useForm } from "../../../hooks/useForm"
 import { useFormErrorsHandle } from "../../../hooks/useFormErrorsHandle"
 import { setBreadCrumbItemsAction, setToastAction } from "../../../store/actions/appActions"
+import { FileUpload } from "primereact/fileupload"
+import { Image } from "primereact/image"
 
 // formulaire à modifier 
 const initialForm = {
     ID_CATEGORY: null,
     NAME_ARTICLE: "",
     PRICE: "",
+    IMAGE: null,
 }
 
 const EditArticlePage = () => {
@@ -51,6 +54,7 @@ const EditArticlePage = () => {
             form.append("ID_CATEGORY", data.category.code)
             form.append("NAME_ARTICLE", data.NAME_ARTICLE)
             form.append("PRICE", data.PRICE)
+            form.append("IMAGE", data.IMAGE)
 
             const res = await fetchApi(`/article/update/${ID_ARTICLE}`, {
                 method: 'PUT',
@@ -91,6 +95,7 @@ const EditArticlePage = () => {
                 setData({
                     PRICE: uti.PRICE,
                     NAME_ARTICLE: uti.NAME_ARTICLE,
+                    IMAGE: uti?.IMAGE,
                     category: {
                         name: uti.category.DESIGNATION,
                         code: uti.category.ID_CATEGORY,
@@ -125,6 +130,12 @@ const EditArticlePage = () => {
     }, []);
 
 
+    // pour le chargement de l'image choisie
+    useEffect(() => {
+        if (data.IMAGE) {
+            checkFieldData({ target: { name: "image" } })
+        }
+    }, [data.IMAGE])
 
 
     return (
@@ -189,6 +200,41 @@ const EditArticlePage = () => {
                                 />
                                 <div className="invalid-feedback" style={{ minHeight: 21, display: 'block' }}>
                                     {hasError('category') ? getError('category') : ""}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form-group col-sm mt-5">
+                        <div className="row">
+                            <div className="col-md-4">
+                                <label htmlFor="IMAGE" className="label mb-1">Image article</label>
+                            </div>
+                            <div className="col-sm">
+                                <div className="w-max mb-2">
+                                    <Image src={data?.IMAGE} alt="Image" className="rounded" imageClassName="rounded " width="100" height="100" imageStyle={{ objectFit: 'cover' }} preview />
+                                </div>
+                                <FileUpload
+                                    chooseLabel="Choisir une image"
+                                    cancelLabel="Annuler"
+                                    name="IMAGE"
+                                    uploadOptions={{
+                                        style: { display: 'none' }
+                                    }}
+                                    className="p-invalid"
+                                    accept="image/*"
+                                    maxFileSize={2000000}
+                                    invalidFileSizeMessageDetail="Image trop lourde(max: 2Mo)"
+                                    emptyTemplate={<p className="m-0">Drag and drop your image here</p>}
+                                    onSelect={async e => {
+                                        const file = e.files[0]
+                                        setValue('IMAGE', file)
+                                    }}
+                                    onClear={() => {
+                                        setError("IMAGE", {})
+                                    }}
+                                />
+                                <div className="invalid-feedback" style={{ minHeight: 21, display: 'block' }}>
+                                    {hasError('IMAGE') ? getError('IMAGE') : ""}
                                 </div>
                             </div>
                         </div>
