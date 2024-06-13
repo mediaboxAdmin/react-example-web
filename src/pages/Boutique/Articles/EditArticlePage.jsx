@@ -14,7 +14,7 @@ import { setBreadCrumbItemsAction, setToastAction } from "../../../store/actions
 const initialForm = {
     ID_CATEGORY: null,
     NAME_ARTICLE: "",
-    PRICE: ""
+    PRICE: "",
 }
 
 const EditArticlePage = () => {

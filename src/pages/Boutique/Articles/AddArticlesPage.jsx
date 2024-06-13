@@ -9,12 +9,14 @@ import fetchApi from "../../../helpers/fetchApi"
 import { useForm } from "../../../hooks/useForm"
 import { useFormErrorsHandle } from "../../../hooks/useFormErrorsHandle"
 import { setBreadCrumbItemsAction, setToastAction } from "../../../store/actions/appActions"
+import { FileUpload } from "primereact/fileupload"
 
 // formulaire à soumettre
 const initialForm = {
     ID_CATEGORY: null,
     NAME_ARTICLE: "",
-    PRICE: ""
+    PRICE: "",
+    IMAGE: null,
 }
 
 const AddArticlesPage = () => {
@@ -37,6 +39,9 @@ const AddArticlesPage = () => {
         },
         category: {
             required: true
+        },
+        IMAGE: {
+            required: true
         }
     })
 
@@ -49,6 +54,7 @@ const AddArticlesPage = () => {
             form.append("ID_CATEGORY", data.category.code)
             form.append("NAME_ARTICLE", data.NAME_ARTICLE)
             form.append("PRICE", data.PRICE)
+            form.append("IMAGE", data.IMAGE)
 
             const res = await fetchApi('/article/create', {
                 method: 'POST',
@@ -99,6 +105,13 @@ const AddArticlesPage = () => {
     useEffect(() => {
         fetchCatgeories();
     }, []);
+
+    // pour le chargement de l'image choisie
+    useEffect(() => {
+        if (data.IMAGE) {
+            checkFieldData({ target: { name: "image" } })
+        }
+    }, [data.IMAGE])
 
     return (
         <>
@@ -162,6 +175,38 @@ const AddArticlesPage = () => {
                                 />
                                 <div className="invalid-feedback" style={{ minHeight: 21, display: 'block' }}>
                                     {hasError('category') ? getError('category') : ""}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="form-group col-sm mt-5">
+                        <div className="row">
+                            <div className="col-md-4">
+                                <label htmlFor="IMAGE" className="label mb-1">Image article</label>
+                            </div>
+                            <div className="col-sm">
+                                <FileUpload
+                                    chooseLabel="Choisir une image"
+                                    cancelLabel="Annuler"
+                                    name="IMAGE"
+                                    uploadOptions={{
+                                        style: { display: 'none' }
+                                    }}
+                                    className="p-invalid"
+                                    accept="image/*"
+                                    maxFileSize={2000000}
+                                    invalidFileSizeMessageDetail="Image trop lourde(max: 2Mo)"
+                                    emptyTemplate={<p className="m-0">Drag and drop your image here</p>}
+                                    onSelect={async e => {
+                                        const file = e.files[0]
+                                        setValue('IMAGE', file)
+                                    }}
+                                    onClear={() => {
+                                        setError("IMAGE", {})
+                                    }}
+                                />
+                                <div className="invalid-feedback" style={{ minHeight: 21, display: 'block' }}>
+                                    {hasError('IMAGE') ? getError('IMAGE') : ""}
                                 </div>
                             </div>
                         </div>

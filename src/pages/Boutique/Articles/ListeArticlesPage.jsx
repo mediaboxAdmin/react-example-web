@@ -14,6 +14,8 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { setToastAction } from "../../../store/actions/appActions"
+import { Image } from "primereact/image"
+import UserImage from "../../../../public/images/user.png"
 
 const ListeArticlesPage = () => {
 
@@ -228,6 +230,31 @@ const ListeArticlesPage = () => {
             // size="normal"
             >
               <Column selectionMode="multiple" frozen headerStyle={{ width: '3rem' }} />
+              <Column
+                field="IMAGE"
+                header="Image"
+                frozen
+                body={(item) => {
+                  const css = `
+                                                                                .p-image-preview-indicator {
+                                                                                          border-radius: 50%
+                                                                                }`;
+                  return (
+                    <>
+                      <Image
+                        src={item.IMAGE || UserImage}
+                        alt="Image"
+                        className="rounded-5"
+                        imageClassName="rounded-5 object-fit-cover"
+                        imageStyle={{ width: "50px", height: "50px" }}
+                        style={{ width: "50px", height: "50px" }}
+                        preview
+                      />
+                      <style>{css}</style>
+                    </>
+                  );
+                }}
+              />
               <Column field="NAME_ARTICLE" frozen header="Article" sortable body={item => {
                 return (
                   <span>{item.NAME_ARTICLE}</span>
