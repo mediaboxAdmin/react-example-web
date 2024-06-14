@@ -241,14 +241,34 @@ const ListPageCategorie = () => {
               <Column field="" header="Actions" alignFrozen="right" frozen body={item => {
                 const items = [
                   {
-                    label: 'Plus de details',
-                    icon: (options) => {
+                    template: (deleteItem, options) => {
                       return (
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16" {...options.iconProps}>
-                          <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
-                        </svg>
-                      )
-                    }
+                        <a
+                          to="#"
+                          className="p-menuitem-link"
+                          // onClick={""}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="currentColor"
+                            className="bi bi-eye-fill"
+                            viewBox="0 0 16 16"
+                            style={{ marginRight: "0.5rem" }}
+                            {...options.iconProps}
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                            />
+                          </svg>
+                          <span className="p-menuitem-text">
+                            Plus de détails
+                          </span>
+                        </a>
+                      );
+                    },
                   },
                   {
                     template: (deleteItem, options) => {
