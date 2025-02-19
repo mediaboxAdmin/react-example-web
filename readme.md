@@ -52,3 +52,20 @@ vite.config.js
 - `package-lock.json`: Fichier généré par npm pour fixer les versions exactes des dépendances.
 - `package.json`: Fichier de configuration de Node.js listant les métadonnées du projet et les dépendances.
 - `vite.config.js`: Ce fichier permet de configurer Vite pour personnaliser le processus de construction du projet
+
+# Liste de dépendances
+| Dépendance |  Description                          |
+| :-------: | :----------------------------------------------------------: |
+| mapbox-gl & react-map-gl  | Pour utiliser mapbox sur react  |
+| redux-react  | Creer un etat centralise  |
+| highcharts  | Afficher les donnees les graphiques  |
+| pdf-lib  | Generer des documents PDF  |
+| react-infinite-scroll-component  | Creation d'une liste infinie au scroll |
+| react-intl  | Pour l'internationalisation  |
+| react-lottie-player  | Pour afficher les animations au format lottie |
+| moment  | Manipulation des dates  |
+| react-top-loading-bar  | Pour afficher un loading de chargement de la page en haut |
+| socket.io-client  | Effectuer des evenements en temps reel  |
+| xlsx  | Generer des fichiers excel  |
+| pdfkit  | Generer des fichiers pdf  |
+| zego  | Effectuer des appels |
