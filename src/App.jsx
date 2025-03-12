@@ -25,6 +25,7 @@ function App() {
    const toast = useRef(null)
    const appToast = useSelector(toastSelector)
    const dispacth = useDispatch()
+   const nub = 0
    useEffect(() => {
       if (appToast) {
          toast.current.show(appToast)
