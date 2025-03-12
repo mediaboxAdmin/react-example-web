@@ -1,6 +1,7 @@
-
 # <a name="structure"></a> Structure
+
 Par défaut, Vite crée un projet React avec une structure minimale. Cependant, au cours de cette formation, nous allons améliorer cette structure en ajoutant d'autres sous-dossiers à l'intérieur du dossier "src". Voici à quoi ressemble la structure du projet :
+
 <pre>
 - node_modules/
 - public/
@@ -29,11 +30,13 @@ package-lock.json
 package.json
 vite.config.js
   </pre>
-  Voici une description détaillée de chaque répertoire et fichier :
+
+Voici une description détaillée de chaque répertoire et fichier :
+
 - `node_modules/`: Dossier où les dépendances de votre projet sont installées par npm.
 - `public/`: Répertoire des ressources statiques accessibles publiquement
 - `src/` : Répertoire des sources de l'application React
-  - `class/`: Contient des classes qui sont utilisées dans l'application.
+   - `class/`: Contient des classes qui sont utilisées dans l'application.
 - `assets/` : Utilisé dans les projets pour stocker des fichiers statiques tels que des images, des polices, des vidéos, des fichiers audio, des icônes, etc.
 - `components/` : Composants réutilisables de l'application
 - `constants/`: Dossier contenant des fichiers définissant des constantes pour l'application.
@@ -54,18 +57,19 @@ vite.config.js
 - `vite.config.js`: Ce fichier permet de configurer Vite pour personnaliser le processus de construction du projet
 
 # Liste de dépendances
-| Dépendance |  Description                          |
-| :-------: | :----------------------------------------------------------: |
-| mapbox-gl & react-map-gl  | Pour utiliser mapbox sur react  |
-| redux-react  | Creer un etat centralise  |
-| highcharts  | Afficher les donnees les graphiques  |
-| pdf-lib  | Generer des documents PDF  |
-| react-infinite-scroll-component  | Creation d'une liste infinie au scroll |
-| react-intl  | Pour l'internationalisation  |
-| react-lottie-player  | Pour afficher les animations au format lottie |
-| moment  | Manipulation des dates  |
-| react-top-loading-bar  | Pour afficher un loading de chargement de la page en haut |
-| socket.io-client  | Effectuer des evenements en temps reel  |
-| xlsx  | Generer des fichiers excel  |
-| pdfkit  | Generer des fichiers pdf  |
-| zego  | Effectuer des appels |
+
+|           Dépendance            |                        Description                        |
+| :-----------------------------: | :-------------------------------------------------------: |
+|    mapbox-gl & react-map-gl     |              Pour utiliser mapbox sur react               |
+|           redux-react           |                 Creer un etat centralise                  |
+|           highcharts            |            Afficher les donnees les graphiques            |
+|             pdf-lib             |                 Generer des documents PDF                 |
+| react-infinite-scroll-component |          Creation d'une liste infinie au scroll           |
+|           react-intl            |                Pour l'internationalisation                |
+|       react-lottie-player       |       Pour afficher les animations au format lottie       |
+|             moment              |                  Manipulation des dates                   |
+|      react-top-loading-bar      | Pour afficher un loading de chargement de la page en haut |
+|        socket.io-client         |          Effectuer des evenements en temps reel           |
+|              xlsx               |                Generer des fichiers excel                 |
+|             pdfkit              |                 Generer des fichiers pdf                  |
+|              zego               |                   Effectuer des appels                    |

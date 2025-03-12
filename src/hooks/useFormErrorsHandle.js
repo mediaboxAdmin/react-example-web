@@ -15,7 +15,7 @@ export const useFormErrorsHandle = (data, rules, customMessages, customValidatio
 
    const setError = (key, errors) => {
       validation.setError(key, Array.isArray(errors) ? errors[0] : errors)
-      setErrors(err => ({ ...err, [key]: Array.isArray(errors) ? errors : [] }))
+      setErrors((err) => ({ ...err, [key]: Array.isArray(errors) ? errors : [] }))
    }
 
    const checkFieldData = (e) => {
@@ -31,9 +31,9 @@ export const useFormErrorsHandle = (data, rules, customMessages, customValidatio
       }
    }
 
-   const hasError = name => errors[name] && errors[name].length > 0 ? true : false
+   const hasError = (name) => (errors[name] && errors[name].length > 0 ? true : false)
 
-   const getError = name => {
+   const getError = (name) => {
       const first = errors[name] ? errors[name][0] : null
       const second = validation.getError(name) ? validation.getError(name)[0] : null
       if (first) return first
@@ -46,10 +46,10 @@ export const useFormErrorsHandle = (data, rules, customMessages, customValidatio
       function areSubarraysEmpty(arr) {
          for (let i = 0; i < arr.length; i++) {
             if (arr[i].length > 0) {
-               return false; // If any subarray is not empty, return false
+               return false // If any subarray is not empty, return false
             }
          }
-         return true; // If all subarrays are empty, return true
+         return true // If all subarrays are empty, return true
       }
       const isValid = areSubarraysEmpty(Object.values(errors))
       validation.run()
@@ -59,6 +59,14 @@ export const useFormErrorsHandle = (data, rules, customMessages, customValidatio
    const run = () => validation.run()
 
    return {
-      errors, setErrors, setError, getError, hasError, checkFieldData, getErrors, isValidate, run
+      errors,
+      setErrors,
+      setError,
+      getError,
+      hasError,
+      checkFieldData,
+      getErrors,
+      isValidate,
+      run,
    }
 }

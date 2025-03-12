@@ -7,7 +7,6 @@ import "primereact/resources/themes/lara-light-indigo/theme.css"
 //core
 import "primereact/resources/primereact.min.css"
 import SideBar from "./components/app/SideBar"
-import "./styles/app/style.css"
 // Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css"
 // Bootstrap Bundle JS
@@ -20,27 +19,44 @@ import { Toast } from "primereact/toast"
 import { useDispatch, useSelector } from "react-redux"
 import { toastSelector } from "./store/selectors/appSelectors"
 import { setToastAction } from "./store/actions/appActions"
+import { userSelector } from "./store/selectors/userSelector"
+import "./styles/app/style.css"
+// eslint-disable-next-line no-unused-vars
+import WelcomeRoutesProvider from "./routes/WelcomeRoutesProvider"
 
 function App() {
    const toast = useRef(null)
    const appToast = useSelector(toastSelector)
-   const dispacth = useDispatch()
+   const dispatch = useDispatch()
+   const user = useSelector(userSelector)
    useEffect(() => {
       if (appToast) {
          toast.current.show(appToast)
       }
    }, [appToast])
+   if (!user) {
+      //  return (
+      //      <>
+      //          <Toast ref={toast} position='top-left' onHide={() => {
+      //              dispatch(setToastAction(null))
+      //          }} />
+      //          <WelcomeRoutesProvider />
+      //      </>
+      //  )
+   }
    return (
       <div className="d-flex">
-         <SideBar />
+         <div id="desktop-sidebar" style={{ zIndex: 2 }}>
+            <SideBar />
+         </div>
          <Toast
             ref={toast}
             position="top-center"
             onHide={() => {
-               dispacth(setToastAction(null))
+               dispatch(setToastAction(null))
             }}
          />
-         <div className="main w-100" style={{ maxWidth: "calc(100% - 300px)" }}>
+         <div className="main flex-1">
             <Header />
             <RoutesProvider />
          </div>
