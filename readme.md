@@ -73,3 +73,27 @@ Voici une description détaillée de chaque répertoire et fichier :
 |              xlsx               |                Generer des fichiers excel                 |
 |             pdfkit              |                 Generer des fichiers pdf                  |
 |              zego               |                   Effectuer des appels                    |
+
+# Règles a suivre
+
+## Application
+
+`Règle 1` : Il est strictement interdit de modifier la structure du projet, les fonctions ou classes prédéfinies de base, sauf s'il existe une raison valable et validée par la direction technique.
+
+`Règle 2` : Avant d'ajouter un module, assurez-vous qu'il n'existe pas déjà un module défini répondant au même besoin.
+
+`Règle 3` : Avant d'ajouter une fonction, assurez-vous qu'il n'existe pas déjà une fonction réalisant la même tâche.
+
+## Nomenclature des fichiers
+
+`Règle 4` : Le nom d'un fichier contenant une classe doit commencer par une lettre majuscule
+
+`Règle 5` : Le nom de fichier d'un composant doit commencer par la lettre majuscules et correspondre au nom de la fonction du composant auquel il est associé.
+
+`Règle 6` : Le nom du fichier représentant une page doit être en CamelCase et se terminer par le suffixe `Page`.
+
+```js
+✅ ListeArticlesPage.js
+❌ listeArticlespage.js
+❌ listeArticles_page.js
+```
