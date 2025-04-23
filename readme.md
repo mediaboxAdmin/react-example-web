@@ -10,22 +10,22 @@ Par défaut, Vite crée un projet React avec une structure minimale. Cependant, 
 📂 src
 |  └── 📂 assets
 |  └── 📂 app
-|      └── 📂 components/
-|      └── 📂 constants/
-|      └── 📂 helpers/
-|      └── 📂 hooks/
+|      └── 📂 components
+|      └── 📂 constants
+|      └── 📂 helpers
+|      └── 📂 hooks
+|      └── 📂 utils
+|      └── 📂 styles
 |  └──📂 modules
 │     └── 📂 utilisateurs
-│         └── utilisateur.page.jsx
-|         └── Utilisateurs.routes.jsx
-|         └── utilisateurs.api.js
-|         └── utilisateur.schema.js  
+│         └── ListeUtilisateursPage.jsx
+|         └── UtilisateursRoutes.jsx
+|         └── utilisateursApi.js
+|         └── utilisateurSchema.js  
 |         └── index.js
 📂 config
-|  📂 lang/
-📂 store/
-📂 styles/
-📂 utils/
+|  📂 lang
+📂 store
 App.css
 App.jsx
 index.css
@@ -42,17 +42,17 @@ Voici une description détaillée de chaque répertoire et fichier :
 - `node_modules/`: Dossier où les dépendances de votre projet sont installées par npm.
 - `public/`: Répertoire des ressources statiques accessibles publiquement
 - `src/` : Répertoire des sources de l'application React
-   - `class/`: Contient des classes qui sont utilisées dans l'application.
+  - `app/`
+    - `components/` : Composants réutilisables de l'application
+    - `constants/`: Dossier contenant des fichiers définissant des constantes pour l'application.
+    - `hooks/`: Utilisé pour regrouper des hooks personnalisés dans une application React
+    - `utils/`: Dossier qui contient des utilitaires, par exemple, des fonctions ou des configurations réutilisables.
+  - modules : Contient tous les dossiers y compris les fichiers des domaines de l'application.
 - `assets/` : Utilisé dans les projets pour stocker des fichiers statiques tels que des images, des polices, des vidéos, des fichiers audio, des icônes, etc.
-- `components/` : Composants réutilisables de l'application
-- `constants/`: Dossier contenant des fichiers définissant des constantes pour l'application.
-- `hooks/`: Utilisé pour regrouper des hooks personnalisés dans une application React
-- `lang/`: Utilisé pour stocker des fichiers de traduction
-- `pages/`: Utilisé dans les applications React pour organiser les composants qui correspondent à des pages spécifiques de l'application. Chaque fichier JavaScript ou JSX dans ce dossier représente une page de l'application.
-- `routes/`: Utilisé pour stocker les définitions de routes dans une application
+- `config`:
+    - `lang/`: Utilisé pour stocker des fichiers de traduction
 - `store/`: Utilisé pour regrouper la logique liée à la gestion de l'état global de l'application (redux)
 - `styles/`: Utilisé pour stocker les fichiers de styles CSS ou Sass (ou d'autres préprocesseurs CSS)
-- `utils/`: Dossier qui contient des utilitaires, par exemple, des fonctions ou des configurations réutilisables.
 - `main.js`: Ce fichier est généralement le point d'entrée JavaScript de votre application React
 - `App.jsx`: Ce fichier est généralement le composant principal de votre application React
 - `.eslintrc.cjs`: Fichier de configuration ESLint au format CommonJS utilisé pour détecter et signaler les erreurs de syntaxe
@@ -63,6 +63,8 @@ Voici une description détaillée de chaque répertoire et fichier :
 - `vite.config.js`: Ce fichier permet de configurer Vite pour personnaliser le processus de construction du projet
 
 # Liste de dépendances
+
+Voici la liste des dépendances qui viennent préinstallées par défaut. Assurez-vous de garder celles que vous utilisez et désinstallez celles dont vous pensez que vous n'aurez pas besoin.
 
 |           Dépendance            |                        Description                        |
 | :-----------------------------: | :-------------------------------------------------------: |
@@ -90,16 +92,93 @@ Voici une description détaillée de chaque répertoire et fichier :
 
 `Règle 3` : Avant d'ajouter une fonction, assurez-vous qu'il n'existe pas déjà une fonction réalisant la même tâche.
 
+`Règle 4` : Valider les formulaires par des bibliothèques robustes et bien testées comme yup, zod etc.
+
+`Règle 5` : Ecrire les schémas de validation dans son propre fichier pour faciliter la réutilisabilité et la séparation des préocupations.
+
+`Règle 6` : Traduire les messages d'erreur de validation des données.
+
+`Règle 7` : Évitez d'encombrer la page : Décomposer-la dans des différents composants indépendants, Opter pour des composants courts et maintenables
+
 ## Nomenclature des fichiers
 
-`Règle 4` : Le nom d'un fichier contenant une classe doit commencer par une lettre majuscule
+`Règle 8` : Le nom d'un fichier contenant une classe doit commencer par une lettre majuscule
 
-`Règle 5` : Le nom de fichier d'un composant doit commencer par la lettre majuscules et correspondre au nom de la fonction du composant auquel il est associé.
+`Règle 9` : Le nom de fichier d'un composant doit commencer par la lettre majuscules et correspondre au nom de la fonction du composant auquel il est associé.
 
-`Règle 6` : Le nom du fichier représentant une page doit être en CamelCase et se terminer par le suffixe `Page`.
+`Règle 10` : Le nom du fichier représentant une page doit être en CamelCase et se terminer par le suffixe `Page`.
 
 ```js
 ✅ ListeArticlesPage.js
 ❌ listeArticlespage.js
 ❌ listeArticles_page.js
 ```
+## Contribution
+
+### Lancer les tests localement
+
+Pour lancer les test unitaires on utilise jest en executant cette commande:
+
+```
+npm run test
+```
+
+### Formatage du code source
+
+Nous utilisons <a href="https://prettier.io/">Prettier</a> pour formater le code source
+
+Vous pouvez formater automatiquement votre code en exécutant :
+
+```
+npx prettier . --write
+```
+
+### Linting/verifying votre code
+
+Vous pouvez vérifier que votre code est correctement formaté et respecte le style de codage en exécutant :
+
+```
+npm run lint
+```
+
+### Guide des messages de commit
+
+Nous avons des règles très précises sur la façon dont nos messages de commit Git doivent être formatés. Cela permet d'avoir des messages plus lisibles et faciles à suivre lors de l'exploration de l'historique du projet. Vous trouverez plus de détails sur ces règles <a href="https://gist.github.com/pmutua/7008c22908f89eb8bd21b36e4f92b04f">ici</a>
+
+Voici le format d'un message de commit:
+
+```
+<type>(<scope>): <subject>
+```
+
+#### Type
+
+Doit être l'un des suivants :
+
+- build : Modifications affectant le système de build ou les dépendances externes (exemples de scopes : gulp, broccoli, npm).
+- ci : Modifications des fichiers de configuration et scripts de l'intégration continue (exemples de scopes : Circle, BrowserStack, SauceLabs).
+- docs : Modifications concernant uniquement la documentation.
+- feat : Ajout d'une nouvelle fonctionnalité.
+- fix : Correction d'un bug.
+- perf : Modification du code visant à améliorer les performances.
+- refactor : Modification du code qui ne corrige pas un bug et n'ajoute pas de nouvelle fonctionnalité.
+- style : Modifications qui n'affectent pas le fonctionnement du code (espaces, formatage, points-virgules manquants, etc.).
+- test : Ajout ou correction de tests existants.
+
+#### scope
+
+Scope est un module
+
+#### subject
+
+Le sujet contient une description succincte de la modification :
+
+- Utilisez l'impératif au présent : "changer" et non "J'ai changeé" ou "les echanges".
+- Ne mettez pas de majuscule à la première lettre.
+- Ne terminez pas par un point (.).
+
+Examples:
+
+- ✅ feat(auth): ajouter la route pour reinitialiser le mot de passe
+- ✅ fix(dashboard): corriger le probleme des donnees non correspondantes
+- ✅ refactory(ihm): enlever les commentaires unitiles
