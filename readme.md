@@ -8,12 +8,19 @@ Par défaut, Vite crée un projet React avec une structure minimale. Cependant, 
 |  └── favicon.ico 
 |  └── logo.png
 📂 src
-├── 📂 assets
-├── 📂 app
-|   📂 components/
-|   📂 constants/
-|   📂 helpers/
-|   📂 hooks/
+|  └── 📂 assets
+|  └── 📂 app
+|      └── 📂 components/
+|      └── 📂 constants/
+|      └── 📂 helpers/
+|      └── 📂 hooks/
+|  └──📂 modules
+│     └── 📂 utilisateurs
+│         └── utilisateur.page.jsx
+|         └── Utilisateurs.routes.jsx
+|         └── utilisateurs.api.js
+|         └── utilisateur.schema.js  
+|         └── index.js
 📂 config
 |  📂 lang/
 📂 store/
