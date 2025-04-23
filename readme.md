@@ -3,27 +3,26 @@
 Par défaut, Vite crée un projet React avec une structure minimale. Cependant, au cours de cette formation, nous allons améliorer cette structure en ajoutant d'autres sous-dossiers à l'intérieur du dossier "src". Voici à quoi ressemble la structure du projet :
 
 <pre>
-- node_modules/
-- public/
-  ├─ favicon.ico 
-  ├─ logo.png
-- src/
-  ├─ assets/
-  ├─ class/
-  ├─ components/
-  ├─ constants/
-  ├─ helpers/
-  ├─ hooks/
-  ├─ lang/
-  ├─ pages/
-  ├─ routes/
-  ├─ store/
-  ├─ styles/
-  ├─ utils/
-  App.css
-  App.jsx
-  index.css
-  main.jsx
+📂 node_modules
+📂 public
+|  └── favicon.ico 
+|  └── logo.png
+📂 src
+├── 📂 assets
+├── 📂 app
+|   📂 components/
+|   📂 constants/
+|   📂 helpers/
+|   📂 hooks/
+📂 config
+|  📂 lang/
+📂 store/
+📂 styles/
+📂 utils/
+App.css
+App.jsx
+index.css
+main.jsx
 .eslintrc.cjs
 .gitignore
 package-lock.json
